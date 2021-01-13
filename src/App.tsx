@@ -1,10 +1,17 @@
 import React from 'react';
+import Video from './components/Video';
+import { Container } from './styles';
+import GlobalStyle from './styles/global';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello podcast</h1>
-    </div>
+    <Container>
+      <h1>Recomendado para você</h1>
+
+      <Video />
+
+      <GlobalStyle />
+    </Container>
   );
 }
 
