@@ -5,36 +5,36 @@ import { Container } from './styles';
 import GlobalStyle from './styles/global';
 
 interface Podcast {
-  etag: String;
+  etag: string;
   id: {
-    kind: String;
-    videoId: String;
+    kind: string;
+    videoId: string;
   };
   snippet: Snippet; 
 }
 
 interface Snippet {
-  channelId: String;
-  channelTitle: String;
-  description: String;
-  liveBroadcastContent: String;
-  publishTime: String;
-  publishedAt: String;
+  channelId: string;
+  channelTitle: string;
+  description: string;
+  liveBroadcastContent: string;
+  publishTime: Date;
+  publishedAt: Date;
   thumbnails: { 
     default: {
-      height: Number;
-      url: String;
-      width: String;
+      height: number;
+      url: string;
+      width: number;
     }, 
     medium: {
-      height: Number;
-      url: String;
-      width: String;
+      height: number;
+      url: string;
+      width: number;
     }, 
     high: {
-      height: Number;
-      url: String;
-      width: String;
+      height: number;
+      url: string;
+      width: number;
     } 
   };
   title: String;
@@ -63,6 +63,7 @@ function App() {
 
       {podcasts.map(podcast => (
         <Video
+          key={podcast.id.videoId}
           imageURL={podcast.snippet.thumbnails.medium.url} 
           title={podcast.snippet.title}
           publishedOn={podcast.snippet.publishedAt}
