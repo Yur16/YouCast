@@ -1,13 +1,20 @@
 import React from 'react';
 
-import { Container, Duration, Title, ViewCount, PublishedOn } from './styles';
+import { Container, Duration, Title, PublishedOn } from './styles';
 
-const Video: React.FC = () => {
+interface VideoProps {
+  title: String;
+  publishedOn: String;
+  imageURL: String;
+  ChannelName: String;
+}
+
+const Video: React.FC<VideoProps> = ({ imageURL, title, publishedOn, ChannelName}) => {
   return (
     <Container>
       <div className='image-container'>
         <img
-          src='https://i.ytimg.com/vi/lYNBpQgQzeo/maxresdefault.jpg'
+          src={`${imageURL}`}
         />
         <Duration>
           <span>1:07:34</span>
@@ -16,9 +23,8 @@ const Video: React.FC = () => {
       
 
       <div className='details'>
-        <Title>PRIMO RICO - Flow Podcst #165</Title>
-        <ViewCount>1.074.649 visualizações</ViewCount> <span className='separator'>·</span> 
-        <PublishedOn>Estreou em 22 de jul. de 2020</PublishedOn>
+        <Title>{title}</Title>
+        <PublishedOn>{publishedOn} por <strong>{ChannelName}</strong></PublishedOn>
       </div>
 
     </Container>

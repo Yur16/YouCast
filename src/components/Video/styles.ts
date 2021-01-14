@@ -17,12 +17,6 @@ export const Container = styled.div`
 
   .details {
     margin-top: 8px;
-
-    .separator {
-      color: rgba(255, 255, 255, .5);
-      font-weight: bold;
-      margin: 0 5px;
-    }
   }
 `;
 
@@ -46,15 +40,13 @@ export const Title = styled.h2`
   font-weight: bold;
   margin-bottom: 4px;
 `;
-export const ViewCount = styled.span`
-  margin-top: 8px;
-  font-size: 13px;
-  font-family: Mulish, sans-serif;
-  color: rgba(255, 255, 255, .5);
-`;
 export const PublishedOn = styled.span`
   margin-top: 10px;
   font-size: 13px;
   font-family: Mulish, sans-serif;
   color: rgba(255, 255, 255, .5);
+
+  > strong {
+    color: rgba(255, 255, 255, 0.8);
+  }
 `;
