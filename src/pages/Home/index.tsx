@@ -36,7 +36,7 @@ interface Snippet {
       width: number;
     } 
   };
-  title: String;
+  title: string;
 }
 
 function Home() {
@@ -80,6 +80,7 @@ function Home() {
         <div className='content'>
           {podcasts.map(podcast => (
             <Video
+              id={podcast.id.videoId}
               key={podcast.id.videoId}
               imageURL={podcast.snippet.thumbnails.medium.url} 
               title={podcast.snippet.title}
@@ -96,6 +97,7 @@ function Home() {
         <div className='content'>
           {cuts.map(cut => (
             <Video
+              id={cut.id.videoId}
               key={cut.id.videoId}
               imageURL={cut.snippet.thumbnails.medium.url} 
               title={cut.snippet.title}
