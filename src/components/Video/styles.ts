@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  cursor: pointer;
 
   width: 250px;
   height: 250px;
@@ -23,6 +24,7 @@ export const Title = styled.h2`
   color: #fff;
   font-size: 16px;
   font-family: Mulish, sans-serif;
+  text-decoration: none;
   font-weight: bold;
   margin-bottom: 4px;
 
