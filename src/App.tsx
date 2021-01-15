@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Video from './components/Video';
 import api from './services/api';
-import { Container } from './styles';
+import { Container, FullEpisodes, Cuts } from './styles';
 import GlobalStyle from './styles/global';
 
 interface Podcast {
@@ -42,34 +42,72 @@ interface Snippet {
 
 function App() {
   const [podcasts, setPodcasts ] = useState<Podcast[]>([]);
+  const [cuts, setCuts] = useState<Podcast[]>([]);
 
   useEffect(() => {
-    api.get('search', {
-      params: {
-        q: 'xandao flow'
-      }
-    }).then(Response => {
-      const { data } = Response;
+    // Load full episodes
+    async function getFullEpisodes() {
+      const { data } = await api.get('search', {
+        params: {
+          q: 'podcast completo',
+          maxResults: 4,
+        }
+      })
       setPodcasts(data.items);
-      console.log(podcasts[0]);
-    }).catch(err => {
-      console.log(err);
-    })
+    }
+    getFullEpisodes();
+
+    // Load cuts
+    async function getCuts() {
+      const { data } = await api.get('search', {
+        params: {
+          q: 'cortes de podcast',
+          videoDuration: 'medium',
+          maxResults: 20,
+        }
+      })
+      setCuts(data.items);
+    } 
+    getCuts();
+
   }, [])
 
   return (
     <Container>
-      <h1>Recomendado para você</h1>
 
-      {podcasts.map(podcast => (
-        <Video
-          key={podcast.id.videoId}
-          imageURL={podcast.snippet.thumbnails.medium.url} 
-          title={podcast.snippet.title}
-          publishedOn={podcast.snippet.publishedAt}
-          ChannelName={podcast.snippet.channelTitle}
-        />
-      ))}
+      <FullEpisodes>
+        <h1>Podcasts completos</h1>
+
+        <div className='content'>
+          {podcasts.map(podcast => (
+            <Video
+              key={podcast.id.videoId}
+              imageURL={podcast.snippet.thumbnails.medium.url} 
+              title={podcast.snippet.title}
+              publishedOn={podcast.snippet.publishedAt}
+              ChannelName={podcast.snippet.channelTitle}
+            />
+          ))}
+        </div>
+      </FullEpisodes>
+
+      <Cuts>
+        <h1>Cortes de Podcasts</h1>
+
+        <div className='content'>
+          {cuts.map(cut => (
+            <Video
+              key={cut.id.videoId}
+              imageURL={cut.snippet.thumbnails.medium.url} 
+              title={cut.snippet.title}
+              publishedOn={cut.snippet.publishedAt}
+              ChannelName={cut.snippet.channelTitle}
+            />
+          ))}
+        </div>
+
+      </Cuts>
+      
       <GlobalStyle />
     </Container>
   );

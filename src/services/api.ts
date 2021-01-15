@@ -1,14 +1,14 @@
 import Axios from 'axios';
 
-const KEY = 'AIzaSyCzTjqLQvi0-i_q-FspimsZnLpR5xXDvwQ';
+const KEY = 'AIzaSyBHDIrChp-Vn14_D2KNkTEsnBB9W0VWwFY';
 
 const api = Axios.create({
   baseURL: 'https://youtube.googleapis.com/youtube/v3/', 
   params: {
     part: 'snippet',
-    maxResults: 5,
-    topicId: 'podcast',
-    key: KEY
+    key: KEY,
+    type: 'video',
+    relevanceLanguage: 'pt-br'
   }
 })
 

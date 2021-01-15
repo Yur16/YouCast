@@ -1,7 +1,7 @@
 import React from 'react';
 import Format from '../../utils/formatDate';
 
-import { Container, Duration, Title, PublishedOn } from './styles';
+import { Container, Title, PublishedOn } from './styles';
 
 interface VideoProps {
   title: String;
@@ -17,15 +17,14 @@ const Video: React.FC<VideoProps> = ({ imageURL, title, publishedOn, ChannelName
         <img
           src={`${imageURL}`}
         />
-        <Duration>
-          <span>1:07:34</span>
-        </Duration>
       </div>
       
 
       <div className='details'>
         <Title>{title}</Title>
-        <PublishedOn>{`há ${Format(publishedOn)}`} por <strong>{ChannelName}</strong></PublishedOn>
+        <PublishedOn>
+          {`há ${Format(publishedOn)}`} por <strong>{ChannelName}</strong>
+        </PublishedOn>
       </div>
 
     </Container>

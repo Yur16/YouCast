@@ -2,16 +2,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
 
   .image-container {
-  position: relative;
-
+    
   > img {
     width: 100%;
     height: 50%;
-  }
+    }
 
   }
 
@@ -20,25 +19,19 @@ export const Container = styled.div`
   }
 `;
 
-export const Duration = styled.div`
-  padding: 0 8px;
-  position: absolute;
-  bottom: 10px;
-  right: 5px;
-
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 4px;
-
-  > span {
-    color: #fff;
-  }
-`;
 export const Title = styled.h2`
   color: #fff;
   font-size: 16px;
   font-family: Mulish, sans-serif;
   font-weight: bold;
   margin-bottom: 4px;
+
+  /* number of lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 export const PublishedOn = styled.span`
   margin-top: 10px;
