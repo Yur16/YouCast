@@ -5,17 +5,18 @@ import Format from '../../utils/formatDate';
 import { Container, Title, PublishedOn } from './styles';
 
 interface VideoProps {
-  title: String;
+  id: string;
+  imageURL: string;
+  title: string;
   publishedOn: Date;
-  imageURL: String;
-  ChannelName: String;
+  ChannelName: string;
 }
 
-const Video: React.FC<VideoProps> = ({ imageURL, title, publishedOn, ChannelName}) => {
+const Video: React.FC<VideoProps> = ({ id, imageURL, title, publishedOn, ChannelName}) => {
 
 
   return (
-    <Link to='watch' style={{ textDecoration: 'none' }}>
+    <Link to={`watch/${id}`} style={{ textDecoration: 'none' }}>
       <Container>
         <div className='image-container'>
           <img

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Home from './pages/Home';
 import Player from './pages/Player';
@@ -7,10 +7,10 @@ import Player from './pages/Player';
 
 const Routes: React.FC = () => {
   return (
-    <BrowserRouter>
+    <Switch>
       <Route path='/' exact component={Home} />
-      <Route path='/watch' component={Player} />
-    </BrowserRouter>
+      <Route path='/watch/:id' component={Player} />
+    </Switch>
   );
 }
 
