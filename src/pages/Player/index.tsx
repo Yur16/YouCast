@@ -13,12 +13,11 @@ const Player: React.FC = () => {
 
   return (
     <Container>
-      <h1>Player</h1>
       <ReactPlayer className='video'
         url={`https://www.youtube.com/watch?v=${id}`}
         controls
-        width={800}
-        height={450}
+        width={820}
+        height={460}
       />
     </Container>
   );

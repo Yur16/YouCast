@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from "react-spinners/ClipLoader";
+
 import Video from '../../components/Video';
 import api from '../../services/api';
-import { Container, FullEpisodes, Cuts } from './styles';
+
+
+import { Container, FullEpisodes, Cuts, ShimmerVideo } from './styles';
 
 interface Podcast {
   etag: string;
@@ -42,8 +46,10 @@ interface Snippet {
 function Home() {
   const [podcasts, setPodcasts ] = useState<Podcast[]>([]);
   const [cuts, setCuts] = useState<Podcast[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     // Load full episodes
     async function getFullEpisodes() {
       const { data } = await api.get('search', {
@@ -69,6 +75,7 @@ function Home() {
     } 
     getCuts();
 
+    setLoading(false);
   }, [])
 
   return (
@@ -78,16 +85,23 @@ function Home() {
         <h1>Podcasts completos</h1>
 
         <div className='content'>
-          {podcasts.map(podcast => (
-            <Video
-              id={podcast.id.videoId}
-              key={podcast.id.videoId}
-              imageURL={podcast.snippet.thumbnails.medium.url} 
-              title={podcast.snippet.title}
-              publishedOn={podcast.snippet.publishedAt}
-              ChannelName={podcast.snippet.channelTitle}
-            />
-          ))}
+          {loading ? (
+            <ShimmerEffect />
+          ) : (
+            <>
+              {podcasts.map(podcast => (
+                <Video
+                  id={podcast.id.videoId}
+                  key={podcast.id.videoId}
+                  imageURL={podcast.snippet.thumbnails.medium.url} 
+                  title={podcast.snippet.title}
+                  publishedOn={podcast.snippet.publishedAt}
+                  ChannelName={podcast.snippet.channelTitle}
+                />
+              ))}
+            </> 
+          )}
+          
         </div>
       </FullEpisodes>
 
@@ -95,21 +109,56 @@ function Home() {
         <h1>Cortes de Podcasts</h1>
 
         <div className='content'>
-          {cuts.map(cut => (
-            <Video
-              id={cut.id.videoId}
-              key={cut.id.videoId}
-              imageURL={cut.snippet.thumbnails.medium.url} 
-              title={cut.snippet.title}
-              publishedOn={cut.snippet.publishedAt}
-              ChannelName={cut.snippet.channelTitle}
-            />
-          ))}
+          {loading ? (
+            <ShimmerEffect />
+          ) : (
+            <>
+              {cuts.map(cut => (
+                <Video
+                  id={cut.id.videoId}
+                  key={cut.id.videoId}
+                  imageURL={cut.snippet.thumbnails.medium.url} 
+                  title={cut.snippet.title}
+                  publishedOn={cut.snippet.publishedAt}
+                  ChannelName={cut.snippet.channelTitle}
+                />
+              ))}
+            </>
+          )}
+          
         </div>
 
       </Cuts>
     </Container>
   );
 }
+
+const ShimmerEffect = () => (
+  <>
+    <ShimmerVideo >
+      <div className='image' />
+      <div className='title'/>
+      <div className='published-at' /> 
+    </ShimmerVideo>
+
+    <ShimmerVideo >
+      <div className='image' />
+      <div className='title'/>
+      <div className='published-at' /> 
+    </ShimmerVideo>
+    
+    <ShimmerVideo >
+      <div className='image' />
+      <div className='title'/>
+      <div className='published-at' /> 
+    </ShimmerVideo>
+
+    <ShimmerVideo >
+      <div className='image' />
+      <div className='title'/>
+      <div className='published-at' /> 
+    </ShimmerVideo>
+  </>   
+);
 
 export default Home;

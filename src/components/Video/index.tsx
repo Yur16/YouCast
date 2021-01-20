@@ -12,26 +12,23 @@ interface VideoProps {
   ChannelName: string;
 }
 
-const Video: React.FC<VideoProps> = ({ id, imageURL, title, publishedOn, ChannelName}) => {
-
+const Video: React.FC<VideoProps> = ({ id, imageURL, title, publishedOn, ChannelName }) => {
 
   return (
     <Link to={`watch/${id}`} style={{ textDecoration: 'none' }}>
       <Container>
-        <div className='image-container'>
-          <img
-            src={`${imageURL}`}
-          />
-        </div>
+          <div className='image-container'>
+            <img
+              src={`${imageURL}`}
+            />
+          </div>
         
-
-        <div className='details'>
-          <Title>{title}</Title>
-          <PublishedOn>
-            {`há ${Format(publishedOn)}`} por <strong>{ChannelName}</strong>
-          </PublishedOn>
-        </div>
-
+          <div className='details'>
+            <Title>{title}</Title>
+            <PublishedOn>
+              {`há ${Format(publishedOn)}`} por <strong>{ChannelName}</strong>
+            </PublishedOn>
+          </div>
       </Container>
     </Link>
   );
